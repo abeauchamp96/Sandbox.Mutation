@@ -18,20 +18,20 @@ namespace Mutation.Services.Tests
             isOldEnough.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void IsPersonOldEnough_ShouldReturnFalse_WhenAgeIsLessThan18()
-        {
-            var isOldEnough = service.IsPersonOldEnough(12);
+        //[TestMethod]
+        //public void IsPersonOldEnough_ShouldReturnFalse_WhenAgeIsLessThan18()
+        //{
+        //    var isOldEnough = service.IsPersonOldEnough(12);
 
-            isOldEnough.Should().BeFalse();
-        }
+        //    isOldEnough.Should().BeFalse();
+        //}
 
-        [TestMethod]
-        public void IsPersonOldEnough_ShouldReturnTrue_WhenAgeIsEqualTo18()
-        {
-            var isOldEnough = service.IsPersonOldEnough(18);
+        //[TestMethod]
+        //public void IsPersonOldEnough_ShouldReturnTrue_WhenAgeIsEqualTo18()
+        //{
+        //    var isOldEnough = service.IsPersonOldEnough(18);
 
-            isOldEnough.Should().BeTrue();
-        }
+        //    isOldEnough.Should().BeTrue();
+        //}
     }
 }
