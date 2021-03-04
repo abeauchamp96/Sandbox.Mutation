@@ -33,3 +33,19 @@ stages:
             command: test
             projects: $(unitTestProjects)
             arguments: '--configuration $(buildConfiguration)'
+        - task: DotNetCoreCLI@2
+            displayName: 'Install dotnet-stryker'
+            inputs:
+              command: custom
+              custom: tool
+              arguments: restore
+        - task: PowerShell@2
+          displayName: 'Run dotnet-stryker'
+          inputs:
+            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
+            targetType: inline
+            script: dotnet stryker -r
+        - task: PublishMutationReport@0
+          displayName: 'Publish Mutation test report'
+          inputs:
+            reportPattern: '**/mutation-report.html'
