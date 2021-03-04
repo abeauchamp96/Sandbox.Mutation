@@ -3,8 +3,7 @@ name: $(Build.DefinitionName).$(Build.SourceBranchName).$(Date:yyyyMMdd).$(Rev:r
 pool: 'Hyrule'
 
 trigger:
-- develop
-- main
+- feature/pipelines
 
 stages:
 - stage: Build_nugets
