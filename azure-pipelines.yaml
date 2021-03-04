@@ -43,9 +43,9 @@ stages:
         - task: PowerShell@2
           displayName: 'Run dotnet-stryker'
           inputs:
-            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
+            workingDirectory: '$(Build.SourcesDirectory)'
             targetType: inline
-            script: dotnet stryker
+            script: '.\Sandbox.Technic.exe'
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:

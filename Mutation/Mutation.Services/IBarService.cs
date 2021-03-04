@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("Mutation.Services.Tests")]
-namespace Mutation.Services
+﻿namespace Mutation.Services
 {
     public interface IBarService
     {
