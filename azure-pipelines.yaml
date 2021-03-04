@@ -45,7 +45,7 @@ stages:
           inputs:
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
             targetType: inline
-            script: dotnet stryker -r
+            script: dotnet stryker
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
