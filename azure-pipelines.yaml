@@ -45,7 +45,7 @@ stages:
           inputs:
             workingDirectory: '$(Build.SourcesDirectory)'
             targetType: inline
-            script: '.\Sandbox.Technic.exe'
+            script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
