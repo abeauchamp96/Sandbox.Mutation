@@ -54,7 +54,7 @@ stages:
             script: dotnet stryker
         - task: PowerShell@2
           displayName: 'Run dotnet-stryker (compare via Pull request)'
-          condition: eq(variables['Build.SourceBranchName'], 'compare')
+          condition: eq(variables['Build.SourceBranchName'], 'merge')
           inputs:
             targetType: inline
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
