@@ -7,7 +7,6 @@ pr:
 
 trigger:
 - feature/pipelines
-- feature/compare
 
 stages:
 - stage: Build_nugets
