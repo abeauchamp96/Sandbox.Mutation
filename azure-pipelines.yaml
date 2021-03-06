@@ -2,8 +2,11 @@ name: $(Build.DefinitionName).$(Build.SourceBranchName).$(Date:yyyyMMdd).$(Rev:r
 
 pool: 'Hyrule'
 
+pr:
+- develop
+
 trigger:
-- feature/pipelines
+- feature/pipelines-*
 
 stages:
 - stage: Build_nugets
@@ -42,10 +45,20 @@ stages:
             workingDirectory: '$(Build.SourcesDirectory)/Mutation'
         - task: PowerShell@2
           displayName: 'Run dotnet-stryker'
+          condition: eq(variables['Build.SourceBranchName'], 'feature/pipelines')
           inputs:
-            workingDirectory: '$(Build.SourcesDirectory)'
             targetType: inline
-            script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
+            #workingDirectory: '$(Build.SourcesDirectory)'
+            #script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
+            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
+            script: dotnet stryker
+        - task: PowerShell@2
+          displayName: 'Run dotnet-stryker'
+          condition: not(eq(variables['Build.SourceBranchName'], 'feature/pipelines'))
+          inputs:
+            targetType: inline
+            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
+            script: dotnet stryker -compare -bsl Dashboard -dk $(Stryker.Dashboard.ApiKey) -version $(System.PullRequest.SourceBranch) -source $(System.PullRequest.TargetBranch)
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
