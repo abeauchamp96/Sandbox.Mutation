@@ -6,7 +6,7 @@ pr:
 - develop
 
 trigger:
-- feature/pipelines-*
+- feature/pipelines*
 
 stages:
 - stage: Build_nugets
