@@ -3,7 +3,7 @@ name: $(Build.DefinitionName).$(Build.SourceBranchName).$(Date:yyyyMMdd).$(Rev:r
 pool: 'Hyrule'
 
 pr:
-- develop
+- main
 
 trigger:
 - feature/pipelines
@@ -58,7 +58,7 @@ stages:
           inputs:
             targetType: inline
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
-            script: dotnet stryker -compare -bsl Dashboard -dk $(Stryker.Dashboard.ApiKey) -version $(System.PullRequest.SourceBranch) -source $(System.PullRequest.TargetBranch)
+            script: dotnet stryker -compare -bsl dashboard -dk $(Stryker.Dashboard.ApiKey) -version $(System.PullRequest.SourceBranch)
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
