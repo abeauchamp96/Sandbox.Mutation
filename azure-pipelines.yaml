@@ -6,7 +6,8 @@ pr:
 - develop
 
 trigger:
-- feature/pipelines*
+- feature/pipelines
+- feature/compare
 
 stages:
 - stage: Build_nugets
@@ -45,7 +46,7 @@ stages:
             workingDirectory: '$(Build.SourcesDirectory)/Mutation'
         - task: PowerShell@2
           displayName: 'Run dotnet-stryker'
-          condition: eq(variables['Build.SourceBranchName'], 'feature/pipelines')
+          condition: eq(variables['Build.SourceBranchName'], 'pipelines')
           inputs:
             targetType: inline
             #workingDirectory: '$(Build.SourcesDirectory)'
@@ -53,8 +54,8 @@ stages:
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
             script: dotnet stryker
         - task: PowerShell@2
-          displayName: 'Run dotnet-stryker'
-          condition: not(eq(variables['Build.SourceBranchName'], 'feature/pipelines'))
+          displayName: 'Run dotnet-stryker (compare via Pull request)'
+          condition: eq(variables['Build.SourceBranchName'], 'compare')
           inputs:
             targetType: inline
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
