@@ -58,7 +58,7 @@ stages:
           inputs:
             targetType: inline
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
-            script: dotnet stryker -compare -bsl dashboard -dk $(Stryker.Dashboard.ApiKey) -version $(Build.SourceBranchName)
+            script: dotnet stryker -compare -bsl dashboard -dk $(Stryker.Dashboard.ApiKey) -version $(System.PullRequest.SourceBranch) -source $(System.PullRequest.TargetBranch) -project github.com/abeauchamp96/Sandbox.Mutation
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
