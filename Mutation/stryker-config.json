@@ -1,0 +1,12 @@
+{
+    "stryker-config":
+    {
+        "reporters": [
+            "cleartext",
+            "json"
+        ],
+        "threshold-high": 100,
+        "threshold-low": 100,
+        "threshold-break": 99
+    }
+}
