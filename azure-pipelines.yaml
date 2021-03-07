@@ -44,15 +44,6 @@ stages:
             arguments: 'restore'
             workingDirectory: '$(Build.SourcesDirectory)/Mutation'
         - task: PowerShell@2
-          displayName: 'Run dotnet-stryker'
-          condition: eq(variables['Build.SourceBranchName'], 'pipelines')
-          inputs:
-            targetType: inline
-            #workingDirectory: '$(Build.SourcesDirectory)'
-            #script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
-            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
-            script: dotnet stryker
-        - task: PowerShell@2
           displayName: 'Run dotnet-stryker (compare via Pull request)'
           condition: eq(variables['Build.SourceBranchName'], 'merge')
           inputs:
