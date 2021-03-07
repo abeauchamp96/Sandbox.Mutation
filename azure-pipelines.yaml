@@ -48,7 +48,7 @@ stages:
             #workingDirectory: '$(Build.SourcesDirectory)'
             #script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
             workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
-            script: dotnet stryker --reporters "['cleartext']"
+            script: dotnet stryker --reporters "['cleartext', 'html']"
         - task: PublishMutationReport@0
           displayName: 'Publish Mutation test report'
           inputs:
