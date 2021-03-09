@@ -45,11 +45,7 @@ stages:
           condition: eq(variables['Build.SourceBranchName'], 'pipelines')
           inputs:
             targetType: inline
-            #workingDirectory: '$(Build.SourcesDirectory)'
-            #script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
-            workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
-            script: dotnet stryker --reporters "['cleartext', 'html']"
-        - task: PublishMutationReport@0
-          displayName: 'Publish Mutation test report'
-          inputs:
-            reportPattern: '**/mutation-report.html'
+            workingDirectory: '$(Build.SourcesDirectory)'
+            script: '.\Sandbox.Technic.exe $(Build.SourcesDirectory)/Mutation *.Tests'
+            #workingDirectory: '$(Build.SourcesDirectory)/Mutation/Mutation.Services.Tests'
+            #script: dotnet stryker --reporters "['cleartext', 'html', 'json']"
